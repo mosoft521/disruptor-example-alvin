@@ -7,6 +7,11 @@ import com.lmax.disruptor.EventFactory;
  * before the framework recycles it.
  */
 public final class ValueEvent {
+    public final static EventFactory<ValueEvent> EVENT_FACTORY = new EventFactory<ValueEvent>() {
+        public ValueEvent newInstance() {
+            return new ValueEvent();
+        }
+    };
     private String value;
 
     public String getValue() {
@@ -16,10 +21,4 @@ public final class ValueEvent {
     public void setValue(String value) {
         this.value = value;
     }
-
-    public final static EventFactory<ValueEvent> EVENT_FACTORY = new EventFactory<ValueEvent>() {
-        public ValueEvent newInstance() {
-            return new ValueEvent();
-        }
-    };
 }
